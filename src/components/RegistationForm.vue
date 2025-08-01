@@ -53,12 +53,10 @@ function handleNext(payload: any) {
     })
     .catch((err) => {
       globalErrors.value = err.errors;
-      console.error('Validation échouée:', err.errors);
     });
 }
 
 function handleLastStep(payload: any) {
-  console.log('Dernière étape atteinte avec les données :', payload);
   showResume.value = true; // Active l'affichage du résumé
 }
 

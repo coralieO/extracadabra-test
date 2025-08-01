@@ -56,7 +56,6 @@ function handleSubmit(e: Event) {
 </script>
 
 <template>
-  {{filePreviews}}
   <form class="personal-information-step flex-column-gap-large" @submit="handleSubmit">
     <div v-for="field in fields" :key="field.name" class="form-group flex-column-gap-small">
       <label :for="field.name">{{ field.label }}</label>
