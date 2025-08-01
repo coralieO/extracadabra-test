@@ -21,6 +21,7 @@ const newStepData = ref({ ...props.stepData })
 
 function handleSubmit(e: Event) {
   e.preventDefault()
+  console.log('Données soumises :', newStepData.value);
   emit('next', newStepData.value)
 }
 </script>

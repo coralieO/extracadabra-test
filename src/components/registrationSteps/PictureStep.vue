@@ -76,7 +76,7 @@ function handleSubmit(e: Event) {
           v-if="filePreviews[field.name]"
           :src="filePreviews[field.name]"
           alt="Preview"
-          style="max-width: 150px; margin-top: 10px;"
+          class="preview-image"
         />
       </template>
 
@@ -105,6 +105,10 @@ function handleSubmit(e: Event) {
 <style lang="scss" scoped>
 @import "../../assets/Style/main.scss";
 
+.preview-image {
+  max-width: 200px;
+  margin-top: var(--padding-large);
+}
 .error {
   color: red;
   font-size: 0.9em;

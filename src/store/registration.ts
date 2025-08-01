@@ -8,6 +8,7 @@ export const useRegistrationStore = defineStore('registration', () => {
   const currentStepIndex = ref(0)
   const stepsData = ref<any[]>([])
   const totalSteps = ref(0)
+  const summary = ref<any | null>(null); 
 
   const stepOrder = ["personal_information", "birthdate", "picture", "address"]
 
@@ -116,6 +117,12 @@ export const useRegistrationStore = defineStore('registration', () => {
     }
   }
 
+  // méthode pour récupérer le résumé
+  async function fetchSummary() {
+    const { data } = await getSummary();
+    summary.value = data; // Stocke les données du résumé
+  }
+
   return { 
     currentStepIndex,
     stepsData,
@@ -123,7 +130,9 @@ export const useRegistrationStore = defineStore('registration', () => {
     currentStepSlug,
     nextStepSlug,
     prevStepSlug,
+    summary,
     initRegistration,
+    fetchSummary,
     nextStep,
     prevStep
   }

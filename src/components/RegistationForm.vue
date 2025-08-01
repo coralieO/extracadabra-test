@@ -8,11 +8,13 @@ import PersonalInformationStep from '../components/registrationSteps/PersonalInf
 import BirthdateStep from '../components/registrationSteps/BirthdateStep.vue';
 import PictureStep from '../components/registrationSteps/PictureStep.vue';
 import AddressStep from '../components/registrationSteps/AddressStep.vue';
+import Resume from '../components/registrationSteps/Resume.vue';
 
 const registration = useRegistrationStore();
 const { stepsData, currentStepIndex } = storeToRefs(registration);
 
 const globalErrors = ref<string[]>([]);
+const showResume = ref(false); // Indique si le résumé doit être affiché
 
 onMounted(() => {
   registration.initRegistration();
@@ -22,6 +24,10 @@ const stepsArray = computed(() => stepsData.value);
 const currentStep = computed(() => stepsArray.value[currentStepIndex.value]);
 
 function getStepComponent(slug?: string) {
+  if (showResume.value) {
+    return Resume; // Affiche le composant Resume si `showResume` est vrai
+  }
+
   switch (slug) {
     case 'personal_information':
       return PersonalInformationStep;
@@ -51,6 +57,11 @@ function handleNext(payload: any) {
     });
 }
 
+function handleLastStep(payload: any) {
+  console.log('Dernière étape atteinte avec les données :', payload);
+  showResume.value = true; // Active l'affichage du résumé
+}
+
 function handlePrev() {
   registration.prevStep();
 }
@@ -58,7 +69,7 @@ function handlePrev() {
 
 <template>
   <div class="registration-form flex-column-gap-large">
-    <h1>{{ currentStep?.title }}</h1>
+    <h1 v-if="!showResume">{{ currentStep?.title }}</h1>
 
     <!-- Encart des erreurs -->
     <div v-if="globalErrors.length" class="error-box">
@@ -69,11 +80,12 @@ function handlePrev() {
 
     <component
       :is="getStepComponent(currentStep?.slug)"
-      v-if="currentStep"
-      :step-data="currentStep.data"
-      :fields="currentStep.assets?.fields || []"
+      v-if="currentStep || showResume"
+      :step-data="currentStep?.data"
+      :fields="currentStep?.assets?.fields || []"
       @next="handleNext"
       @prev="handlePrev"
+      @lastStep="handleLastStep"
     />
   </div>
 </template>
@@ -100,12 +112,10 @@ h1 {
 }
 
 .error-box {
-  background-color: var(--color-error-light);
-  color: var(--color-error-dark);
-  border: 1px solid var(--color-error-dark);
+  background-color: var(--color-secondary-dark);
+  color: var(--color-neutral);
   border-radius: var(--border-radius-small);
   padding: var(--padding-small);
-  margin-bottom: var(--padding-medium);
 }
 
 .error-box ul {
