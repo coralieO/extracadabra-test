@@ -1,0 +1,11 @@
+
+.form-group label {
+    text-align: left;   
+    color: var( --color-primary-darker);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,81 @@
+@import './flex'; // classes utilitaires pour du display flex
+@import './common'; 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+:root {
+    font-family: 'Merriweather', serif; // police principale
+
+    /* Couleurs principales */
+    --color-primary: #37bfdd;         /* Bleu principal */
+    --color-primary-light: #6cd8f1;   /* Bleu clair */
+    --color-primary-lighter: #a6e8fb; /* Bleu très clair */
+    --color-primary-dark: #2999b1;    /* Bleu foncé */
+    --color-primary-darker: #1e6e7f;  /* Bleu très foncé */
+    --color-primary-muted: #85cce0;   /* Bleu désaturé, plus doux */
+  
+    --color-secondary: #ec4899; /* Rose principal */
+    --color-secondary-light: #f472b6; /* Rose clair */
+    --color-secondary-dark: #be185d; /* Rose foncé */
+  
+    /* Neutres */
+    --color-bg: #f9fafb;        /* Fond clair */
+    --color-neutral: #ffffff;   /* Cartes / Form */
+    --color-border: #e5e7eb;    /* Bordures */
+    --color-text: #1f2937;      /* Texte principal */
+    --color-text-muted: #6b7280; /* Texte secondaire */
+
+    /* États */
+    --color-success: #22c55e;
+    --color-error: #ef4444;
+
+     // Paddings
+    --padding-extra-extra-small: 3px;
+    --padding-extra-small: 5px;
+    --padding-small: 10px;
+    --padding-medium: 15px;
+    --padding-large: 20px;
+    --padding-double-medium: 30px;
+    --padding-double-large: 40px;
+    --panel-padding: 20px;
+    --padding-quadruple-large: 80px;
+
+    // Borders radius
+    --border-radius-extra-small: 5px;
+    --border-radius-small: 10px;
+    --border-radius-large: 20px;
+    --border-radius-rounded: 999px;
+
+    // Font sizes
+    --font-size-100: 1.1rem;
+    --font-size-200: 1.3rem;
+    --font-size-300: 1.4rem;
+    --font-size-400: 1.6rem;
+    --font-size-500: 1.8rem;
+    --font-size-600: 2.4rem;
+    --font-size-700: 3.2rem;
+    --font-size-800: 4.8rem;
+  
+    // Font weights
+    --font-weight-bold: 700;
+    --font-weight-semibold: 600;
+    --font-weight-normal: 400;
+    --font-weight-light: 300;
+
+    // Line heights
+    --line-height-100: 1.8rem;
+    --line-height-200: 2rem;
+    --line-height-300: 2.2rem;
+    --line-height-400: 2.4rem;
+    --line-height-500: 2.6rem;
+    --line-height-600: 3.2rem;
+    --line-height-700: 4rem;
+    --line-height-800: 6.2rem;
+  }
+
+  body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg);
+
+  }
+
+  

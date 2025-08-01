@@ -1,0 +1,150 @@
+//********************
+//********************
+// ** FLEX
+//********************
+//********************
+.flex-column-gap-extra-small {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-extra-small);
+  }
+  
+  
+  .flex-column-gap-small {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-small);
+  }
+  
+  .flex-column-gap-medium {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-medium);
+  }
+  
+  .flex-column-gap-large {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-large);
+  }
+  
+  .flex-column-gap-double-large {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-double-large);
+  }
+  
+  .flex-column-gap-between-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-between-section);
+  }
+  
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .flex-gap-extra-extra-small {
+    display: flex;
+    gap: var(--padding-extra-extra-small);
+  }
+  
+  .flex-gap-extra-small {
+    display: flex;
+    gap: var(--padding-extra-small);
+  }
+  
+  .flex-gap-small {
+    display: flex;
+    gap: var(--padding-small);
+  }
+  
+  .flex-gap-medium {
+    display: flex;
+    gap: var(--padding-medium);
+  }
+  
+  .flex-gap-large {
+    display: flex;
+    gap: var(--padding-large);
+  }
+  
+  .flex-gap-double-large {
+    display: flex;
+    gap: var(--padding-double-large);
+  }
+  
+  .flex-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .flex-align-center {
+    align-items: center;
+  }
+  
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .flex-row-gap-extra-small {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-extra-small);
+  }
+  
+  .flex-row-gap-small {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-small);
+  }
+  
+  .flex-row-gap-medium {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-medium);
+  }
+  
+  .flex-row-gap-large {
+    display: flex;
+    flex-direction: row;
+    gap: var(--padding-large);
+  }
+  
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  
+  //********************
+  //********************
+  // ** GRID
+  //********************
+  //********************
+  .grid-gap-small{
+    display: grid;
+    gap: var(--padding-small);
+  }
+  
+  .grid-gap-medium{
+    display: grid;
+    gap: var(--padding-medium);
+  }
+  
+  .grid-gap-large{
+    display: grid;
+    gap: var(--padding-large);
+  }
+  
+  
+  //********************
+  //********************
+  // ** LARGEUR
+  //********************
+  //********************
+  .w-100 {
+    width: 100%;
+  }
+  
