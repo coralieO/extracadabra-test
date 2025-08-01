@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+const frenchAddressRegex = /^[0-9]{1,4}\s?[A-Za-zÀ-ÿ0-9\s'\-]+$/;
 
 export const validationSchemas = {
   personal_information: yup.object({
@@ -29,6 +30,12 @@ export const validationSchemas = {
       }),
   }),
   address: yup.object({
-    address: yup.string().required('L’adresse est requise'),
+      address: yup
+        .string()
+        .required('L’adresse est requise')
+        .matches(
+          frenchAddressRegex,
+          'Veuillez entrer une adresse française valide (ex: 12 Rue de Paris)'
+        ),
   }),
 };

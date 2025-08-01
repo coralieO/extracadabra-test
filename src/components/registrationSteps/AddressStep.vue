@@ -1,53 +1,49 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import axios from 'axios'
-import BaseInput from '../../components/utils/BaseInput.vue'
-import StepActionsButtons from '../../components/StepActionsButtons.vue'
+import { ref } from 'vue';
+import axios from 'axios';
+import BaseInput from '../../components/utils/BaseInput.vue';
+import StepActionsButtons from '../../components/StepActionsButtons.vue';
 
 const props = defineProps<{
-  stepData: Record<string, any>
+  stepData: Record<string, any>;
   fields: Array<{
-    name: string
-    label: string
-    type: string
-    placeholder?: string
-    required?: boolean
-  }>
-}>()
+    name: string;
+    label: string;
+    type: string;
+    placeholder?: string;
+    required?: boolean;
+  }>;
+}>();
 
-const emit = defineEmits(['next', 'prev'])
+const emit = defineEmits(['next', 'prev', 'lastStep']);
 
-const newStepData = ref({ ...props.stepData })
-const suggestions = ref<Array<any>>([])
-const isValidAddress = ref(false)
-const errors = ref<Record<string, string>>({})
+const newStepData = ref({ ...props.stepData });
+const suggestions = ref<Array<any>>([]);
+const isValidAddress = ref(false);
+const errors = ref<Record<string, string>>({});
 
-/**
- * Fetch address suggestions from API Adresse (France)
- */
 async function fetchAddressSuggestions(query: string) {
   if (!query || query.length < 3) {
-    suggestions.value = []
-    isValidAddress.value = false
-    return
+    suggestions.value = [];
+    return;
   }
 
   try {
     const { data } = await axios.get('https://nominatim.openstreetmap.org/search', {
       params: {
         q: query,
-        limit: 5
-      }
-    })
+        limit: 5,
+      },
+    });
 
     suggestions.value = data.features.map((f: any) => ({
       label: f.properties.label,
       city: f.properties.city,
       postcode: f.properties.postcode,
-      coordinates: f.geometry.coordinates
-    }))
+      coordinates: f.geometry.coordinates,
+    }));
   } catch (error) {
-    console.error('Erreur lors de la récupération des adresses :', error)
+    console.error('Erreur lors de la récupération des adresses :', error);
   }
 }
 
@@ -55,22 +51,24 @@ async function fetchAddressSuggestions(query: string) {
  * When user selects a suggestion
  */
 function selectSuggestion(fieldName: string, suggestion: any) {
-  newStepData.value[fieldName] = suggestion.label
-  isValidAddress.value = true
-  suggestions.value = []
+  newStepData.value[fieldName] = suggestion.label;
+  isValidAddress.value = true;
+  suggestions.value = [];
 }
 
 /**
  * Validate and submit step
  */
 function handleSubmit(e: Event) {
-  e.preventDefault()
-  const addressField = props.fields.find(f => f.type === 'address')
+  e.preventDefault();
+  const addressField = props.fields.find((f) => f.type === 'address');
   if (addressField && !isValidAddress.value) {
-    errors.value[addressField.name] = 'Veuillez sélectionner une adresse valide'
-    return
+    errors.value[addressField.name] = 'Veuillez sélectionner une adresse valide';
+    return;
   }
-  emit('next', newStepData.value)
+
+  // Émettre l'événement `lastStep` si c'est la dernière étape
+  emit('lastStep', newStepData.value);
 }
 </script>
 
@@ -130,7 +128,7 @@ function handleSubmit(e: Event) {
       :show-next="true"
       :last-step="true"
       @prev="$emit('prev')"
-      @next="() => emit('next', newStepData.value)"
+      @next="handleSubmit"
     />
   </form>
 </template>
