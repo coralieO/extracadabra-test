@@ -10,6 +10,7 @@ defineProps<{
 
 defineEmits<{
   (e: 'update:modelValue', value: string): void;
+  (e: 'input', event: Event): void
 }>();
 
 </script>
@@ -22,8 +23,8 @@ defineEmits<{
       class="input"
       :class="[{ 'rounded': rounded }, color]"
       :placeholder="placeHolder"
-      @input="$emit('update:modelValue', $event.target?.value)"
-    >
+      @input="$emit('update:modelValue', $event.target?.value); $emit('input', $event)"
+      >
     <span
       v-if="errors"
       class="error-text"

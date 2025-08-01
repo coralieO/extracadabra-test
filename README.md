@@ -30,76 +30,33 @@ Ce projet est une application Vue.js 3 qui gère un funnel d'inscription 100% dy
     npm install
     ou
     yarn install
+```
 
 
     
-Lancez le projet en développement :
+## Lancez le projet en développement :
 
-bash
-Copier
-Modifier
-npm run dev
-Ouvrez l'application :
+```bash
+    npm run dev
+```
 
-http://localhost:5173
 
-🛠️ Technologies utilisées
-Vue.js 3 – Framework JavaScript pour l'UI
+## 🛠️ Technologies utilisées
+- Vue.js 3 – Framework JavaScript pour l'UI
 
-Pinia – Gestion de l'état global
+- Pinia – Gestion de l'état global
 
-Vee-Validate – Validation des formulaires
+- Vee-Validate – Validation des formulaires
 
-Yup – Définition des schémas de validation
+- Yup – Définition des schémas de validation
 
-axios-mock-adapter – Mock des appels API
+- axios-mock-adapter – Mock des appels API
 
-SCSS – Préprocesseur CSS pour le design
+- SCSS – Préprocesseur CSS pour le design
 
-📝 Étapes du funnel
-Informations personnelles
 
-Champs : Prénom, Nom
+## 📂 Architecture du projet
 
-Validation : requis, min 2 caractères
-
-Date de naissance
-
-Sélecteur de date
-
-Validation : âge minimum 18 ans
-
-Photo de profil
-
-Upload de fichier avec preview
-
-Validation : format et taille
-
-Adresse
-
-Auto-complétion d'adresse
-
-Validation : adresse complète
-
-🔌 Mock API
-Le projet utilise un mock API pour simuler les endpoints suivants :
-
-GET /api/registration/step/{slug} → Récupère les données d'une étape
-
-POST /api/registration/step/{slug} → Envoie les données d'une étape
-
-GET /api/registration/summary → Récupère le résumé des étapes
-
-Les données mockées sont définies dans :
-
-text
-Copier
-Modifier
-src/api/registrationMock.ts
-📂 Architecture du projet
-graphql
-Copier
-Modifier
 src/
 ├── api/                     # Gestion des appels API
 │   ├── registrationApi.ts   # Appels API pour les étapes et le résumé

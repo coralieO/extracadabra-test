@@ -74,7 +74,6 @@ function handleSubmit(e: Event) {
 
 <template>
   <form class="address-step flex-column-gap-large" @submit="handleSubmit">
-    {{ newStepData }}
     <div
       v-for="field in fields"
       :key="field.name"

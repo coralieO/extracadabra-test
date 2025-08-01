@@ -56,6 +56,7 @@ function handleSubmit(e: Event) {
 </script>
 
 <template>
+  {{filePreviews}}
   <form class="personal-information-step flex-column-gap-large" @submit="handleSubmit">
     <div v-for="field in fields" :key="field.name" class="form-group flex-column-gap-small">
       <label :for="field.name">{{ field.label }}</label>
@@ -78,6 +79,7 @@ function handleSubmit(e: Event) {
           alt="Preview"
           class="preview-image"
         />
+        <img  v-if="!filePreviews[field.name] && stepData.picture" :src="stepData.picture" alt="Photo de profil" class="preview-image" />
       </template>
 
       <!-- Inputs classiques -->
