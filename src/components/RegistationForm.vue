@@ -100,12 +100,10 @@ h1 {
 }
 
 .error-box {
-  background-color: var(--color-error-light);
-  color: var(--color-error-dark);
-  border: 1px solid var(--color-error-dark);
+  background-color: var(--color-secondary-dark);
+  color: var(--color-neutral);
   border-radius: var(--border-radius-small);
   padding: var(--padding-small);
-  margin-bottom: var(--padding-medium);
 }
 
 .error-box ul {

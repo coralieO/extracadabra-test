@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import './assets/Style/main.scss'
+import './assets/style/main.scss'
 import App from './App.vue'
-import './api/mockApiData/registrationMock.ts' // Importation des données mock pour l'API
+import './api/mockApiData/registrationMock' // Importation des données mock pour l'API
 
 
   

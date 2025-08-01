@@ -22,14 +22,18 @@ const suggestions = ref<Array<any>>([])
 const isValidAddress = ref(false)
 const errors = ref<Record<string, string>>({})
 
+/**
+ * Fetch address suggestions from API Adresse (France)
+ */
 async function fetchAddressSuggestions(query: string) {
   if (!query || query.length < 3) {
     suggestions.value = []
+    isValidAddress.value = false
     return
   }
 
   try {
-    const { data } = await axios.get('https://api-adresse.data.gouv.fr/search/', {
+    const { data } = await axios.get('https://nominatim.openstreetmap.org/search', {
       params: {
         q: query,
         limit: 5
@@ -47,12 +51,18 @@ async function fetchAddressSuggestions(query: string) {
   }
 }
 
+/**
+ * When user selects a suggestion
+ */
 function selectSuggestion(fieldName: string, suggestion: any) {
   newStepData.value[fieldName] = suggestion.label
   isValidAddress.value = true
   suggestions.value = []
 }
 
+/**
+ * Validate and submit step
+ */
 function handleSubmit(e: Event) {
   e.preventDefault()
   const addressField = props.fields.find(f => f.type === 'address')
@@ -66,6 +76,7 @@ function handleSubmit(e: Event) {
 
 <template>
   <form class="address-step flex-column-gap-large" @submit="handleSubmit">
+    {{ newStepData }}
     <div
       v-for="field in fields"
       :key="field.name"
@@ -83,6 +94,7 @@ function handleSubmit(e: Event) {
           :place-holder="field.placeholder"
           :rounded="true"
           :required="field.required"
+          @input="fetchAddressSuggestions(newStepData[field.name])"
           @update:modelValue="fetchAddressSuggestions"
         />
 
@@ -119,6 +131,6 @@ function handleSubmit(e: Event) {
       :last-step="true"
       @prev="$emit('prev')"
       @next="() => emit('next', newStepData.value)"
-      />
+    />
   </form>
 </template>
