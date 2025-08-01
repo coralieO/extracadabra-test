@@ -13,7 +13,7 @@ const address = stepsData.value.find(step => step.slug === "address")?.data?.add
 </script>
 
 <template>
-  <div class="employee-card">
+  <div class="candidate-card">
     <div class="header">Résumé de votre profil</div>
     <div class="card-content">
       <div class="photo">
@@ -37,7 +37,7 @@ const address = stepsData.value.find(step => step.slug === "address")?.data?.add
 <style scoped lang="scss">
 @import '../../assets/Style/main.scss';
 
-.employee-card {
+.candidate-card {
   width: 600px;
   border-radius: var(--border-radius-small);
   overflow: hidden;
