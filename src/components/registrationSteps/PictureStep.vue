@@ -2,18 +2,11 @@
 import { ref } from 'vue'
 import BaseInput from '../../components/utils/BaseInput.vue'
 import StepActionsButtons from '../../components/StepActionsButtons.vue'
+import type { FormField, StepData } from '../../interface/RegistrationFormInterface';
 
 const props = defineProps<{
-  stepData: Record<string, any>
-  fields: Array<{
-    name: string
-    label: string
-    type: string
-    placeholder?: string
-    required?: boolean
-    accept?: string 
-    maxSizeMB?: number 
-  }>
+  stepData: StepData;
+  fields: FormField[];
 }>()
 
 const emit = defineEmits(['next', 'prev'])
@@ -30,18 +23,6 @@ function handleFileChange(event: Event, field: any) {
   const input = event.target as HTMLInputElement
   const file = input.files?.[0]
   if (!file) return
-
-  // Vérif format
-  if (field.accept && !file.type.match(field.accept.replace('*', '.*'))) {
-    errors.value[field.name] = `Format invalide. Fichiers acceptés : ${field.accept}`
-    return
-  }
-
-  // Vérif taille
-  if (field.maxSizeMB && file.size > field.maxSizeMB * 1024 * 1024) {
-    errors.value[field.name] = `Fichier trop volumineux (max ${field.maxSizeMB} MB)`
-    return
-  }
 
   // Si tout est OK
   errors.value[field.name] = ''
@@ -104,7 +85,7 @@ function handleSubmit(e: Event) {
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/Style/main.scss";
+@use "../../assets/style/main.scss";
 
 .preview-image {
   max-width: 200px;

@@ -95,6 +95,7 @@ export const useRegistrationStore = defineStore('registration', () => {
     const step = stepsData.value[currentStepIndex.value]
 
     await submitStep(step.slug, payload)
+
     stepsData.value[currentStepIndex.value].data = payload
 
     saveToLocalStorage()

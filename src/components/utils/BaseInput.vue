@@ -5,7 +5,6 @@ defineProps<{
   color?: string
   placeHolder?: string
   rounded?: boolean,
-  errors?: string
 }>();
 
 defineEmits<{
@@ -25,16 +24,12 @@ defineEmits<{
       :placeholder="placeHolder"
       @input="$emit('update:modelValue', $event.target?.value); $emit('input', $event)"
       >
-    <span
-      v-if="errors"
-      class="error-text"
-    >{{ errors }}</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 
-@import "../../assets/Style/main.scss";
+@use "../../assets/style/main.scss";
 
 .input {
   outline: none;

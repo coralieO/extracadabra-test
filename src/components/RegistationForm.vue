@@ -44,6 +44,7 @@ function getStepComponent(slug?: string) {
 }
 
 function handleNext(payload: any) {
+
   const schema = validationSchemas[currentStep.value.slug];
   schema
     .validate(payload, { abortEarly: false })
@@ -89,7 +90,7 @@ function handlePrev() {
 </template>
 
 <style lang="scss" scoped>
-@import '../assets/Style/main.scss';
+@use '../assets/style/main.scss';
 
 h1 {
   font-size: var(--font-size-400);
@@ -100,7 +101,6 @@ h1 {
 }
 
 .registration-form {
-  width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: var(--padding-medium);

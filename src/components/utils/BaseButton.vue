@@ -41,7 +41,7 @@ const computedClass = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@import '../../assets/Style/main.scss';
+@use '../../assets/style/main.scss';
 
 button[disabled], html input[disabled], a[data-loading] {
   cursor: not-allowed !important;
@@ -62,6 +62,7 @@ button {
   white-space: normal;
   background-color: var(--color-primary-dark);
   color: var(--color-neutral);
+  cursor: pointer;
 
   /* Style pour les boutons inactifs */
   &.inactive {

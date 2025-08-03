@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import BaseInput from '../../components/utils/BaseInput.vue'
-import StepActionsButtons from '../../components/StepActionsButtons.vue'
+import  StepActionsButtons  from '../../components/StepActionsButtons.vue'
+import type { FormField, StepData } from '../../interface/RegistrationFormInterface';
 
 const props = defineProps<{
-  stepData: Record<string, any>
-  fields: Array<{
-    name: string
-    label: string
-    type: string
-    placeholder?: string
-    required?: boolean
-  }>
+  stepData: StepData;
+  fields: FormField[];
 }>()
+
 
 const emit = defineEmits(['next', 'prev'])
 
@@ -35,7 +31,6 @@ function handleSubmit(e: Event) {
         :name="field.name"
         :type="field.type"
         :place-holder="field.placeholder"
-        :errors="error"
         :rounded="true"
         :required="field.required"
          ></BaseInput>
@@ -52,5 +47,5 @@ function handleSubmit(e: Event) {
 </template>
 
 <style lang="scss" scoped>
-@import "../../assets/Style/main.scss";
+@use "../../assets/style/main.scss";
 </style>

@@ -1,25 +1,36 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useRegistrationStore } from '../../store/registration';
 
 const registration = useRegistrationStore();
 const { stepsData } = storeToRefs(registration);
 
-// Récupération des données
-const personalInfo = stepsData.value.find(step => step.slug === "personal_information")?.data || {};
-const birthdate = stepsData.value.find(step => step.slug === "birthdate")?.data?.birthdate || '';
-const picture = stepsData.value.find(step => step.slug === "picture")?.data?.picture || '';
-const address = stepsData.value.find(step => step.slug === "address")?.data?.address || '';
+const personalInfo = computed(() => 
+  stepsData.value.find(step => step.slug === "personal_information")?.data || {}
+);
+
+const birthdate = computed(() => 
+  stepsData.value.find(step => step.slug === "birthdate")?.data?.birthdate || ''
+);
+
+const picture = computed(() => 
+  stepsData.value.find(step => step.slug === "picture")?.data?.picture || ''
+);
+
+const address = computed(() => 
+  stepsData.value.find(step => step.slug === "address")?.data?.address || ''
+);
 </script>
 
 <template>
   <div class="candidate-card">
     <div class="header">Résumé de votre profil</div>
-    <div class="card-content">
+    <div class="card-content flex-column-gap-medium">
       <div class="photo">
         <img :src="picture" alt="Photo de profil" />
       </div>
-      <div class="info">
+      <div class="info flex-column-gap-small">
         <p class="label">NOM</p>
         <p class="value">{{ personalInfo.first_name }} {{ personalInfo.last_name }}</p>
 
@@ -35,10 +46,9 @@ const address = stepsData.value.find(step => step.slug === "address")?.data?.add
 </template>
 
 <style scoped lang="scss">
-@import '../../assets/Style/main.scss';
+@use '../../assets/style/main.scss';
 
 .candidate-card {
-  width: 600px;
   border-radius: var(--border-radius-small);
   overflow: hidden;
   font-family: 'Merriweather', serif;
@@ -57,12 +67,15 @@ const address = stepsData.value.find(step => step.slug === "address")?.data?.add
   }
 
   .card-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
     padding: var(--padding-large);
     background-color: var(--color-neutral);
 
+    @media (min-width: 1024px) {
+     flex-direction: row;
+     gap: var(--padding-double-large);
+    }
+    
     .photo {
       flex: 0 0 120px;
 
@@ -76,22 +89,17 @@ const address = stepsData.value.find(step => step.slug === "address")?.data?.add
     }
 
     .info {
-      flex: 1;
-      margin: 0 var(--padding-large);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
 
       .label {
         font-weight: var(--font-weight-semibold);
-        font-size: 12px;
+        font-size: var(--font-size-100);
         color: var(--color-primary-dark);
-        margin-bottom: -2px;
+        margin: 0px;
       }
 
       .value {
-        font-size: 14px;
-        margin-bottom: 8px;
+        font-size: var(--font-size-200);
+        font-weight: var(--font-weight-regular);
       }
     }
   }
